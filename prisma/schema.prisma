@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id                         String        @id @default(cuid())
+  first_name                 String
+  last_name                  String
+  phone                      String?       @unique
+  email                      String        @unique
+  is_email_verified          Boolean       @default(false)
+  balance                    Int           @default(0)
+  bonus                      Int           @default(0)
+  transaction_pin            String        @default("")
+  data_transactions_count    Int           @default(0)
+  airtime_transactions_count Int           @default(0)
+  total_funding              Int           @default(0)
+  amount_spent               Int           @default(0)
+  password                   String
+  referred_by                String?
+  created_at                 DateTime      @default(now())
+  role                       Role          @default(User)
+  transactions               Transaction[]
+}
+
+model Transaction {
+  id             Int      @id @default(autoincrement())
+  user           User     @relation(fields: [user_id], references: [id])
+  user_id        String
+  status         String
+  channel        String?
+  type           String
+  balance_before Int?
+  new_balance    Int?
+  mobile_number  String?
+  service        String?
+  plan           String?
+  amount         Int
+  provider       String?
+  api_response   String?
+  created_at     DateTime @default(now())
+
+  @@index([user_id])
+}
+
+model Session {
+  id         String   @id @default("session")
+  token      String?  @db.VarChar(300)
+  updated_at DateTime @updatedAt
+}
+
+enum Role {
+  User
+  Admin
+  Reseller
+}

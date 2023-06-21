@@ -4,6 +4,9 @@
   "description": "Server for saukie.net site",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
+    "build": "prisma generate",
+    "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +20,12 @@
   },
   "homepage": "https://github.com/shamxeed/saukie-server#readme",
   "dependencies": {
+    "@prisma/client": "^4.16.0",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "prisma": "^4.16.0"
   }
 }
