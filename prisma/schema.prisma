@@ -17,6 +17,7 @@ model User {
   last_name                  String
   phone                      String?       @unique
   email                      String        @unique
+  nuban                      String?       @unique
   is_email_verified          Boolean       @default(false)
   balance                    Int           @default(0)
   bonus                      Int           @default(0)
