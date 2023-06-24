@@ -67,6 +67,6 @@ module.exports = async (req, res) => {
     res.json({ msg: 'Funded successfully!' });
   } catch (err) {
     console.log(err.message);
-    res.status(500).send({ msg: 'server error' });
+    res.status(500).send({ msg: err.message });
   }
 };
