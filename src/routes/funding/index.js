@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.post('/automated/vpay', controllers.vpay);
 
+router.post('/automated/monnify', controllers.monnify);
+
 module.exports = router;
