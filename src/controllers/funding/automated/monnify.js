@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
 
   const charge = (amountPaid * 1.5) / 100;
 
-  const amountToFund = Math.floor(amountPaid - charge);
+  const amountToFund = (amountPaid - charge).toFixed();
 
   try {
     const getSession = db.session.findUnique({
