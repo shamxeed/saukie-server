@@ -16,7 +16,7 @@ app.use('/', (req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello from Saukie.net!');
+  res.json({ msg: 'Hello from Saukie.net!' });
 });
 
 app.use('/v1/funding', require('./src/routes/funding/index'));
