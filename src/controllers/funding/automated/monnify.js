@@ -13,7 +13,9 @@ module.exports = async (req, res) => {
 
   const charge = (amountPaid * 1.5) / 100;
 
-  const amountToFund = (amountPaid - charge).toFixed();
+  const amountToFund = Number((amountPaid - charge).toFixed());
+
+  let api_response = `You've successfully received ₦${amountToFund.toLocaleString()} via Automated Funding`;
 
   try {
     const getSession = db.session.findUnique({
@@ -46,9 +48,10 @@ module.exports = async (req, res) => {
         transactions: {
           create: {
             new_balance,
+            api_response,
             type: 'funding',
             status: 'successful',
-            amount: amountToFund,
+            amount: Number(amountToFund),
             channel: 'Automated Funding',
             balance_before: user.balance,
           },
