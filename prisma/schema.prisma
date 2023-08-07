@@ -17,10 +17,11 @@ model User {
   last_name                  String
   phone                      String?       @unique
   email                      String        @unique
-  nuban                      String?       @unique
   is_email_verified          Boolean       @default(false)
   balance                    Int           @default(0)
   bonus                      Int           @default(0)
+  isBonusPaid                Boolean       @default(false)
+  nuban                      String?       @unique
   transaction_pin            String        @default("")
   data_transactions_count    Int           @default(0)
   airtime_transactions_count Int           @default(0)
@@ -35,7 +36,7 @@ model User {
 
 model Transaction {
   id             Int      @id @default(autoincrement())
-  user           User     @relation(fields: [user_id], references: [id])
+  user           User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id        String
   status         String
   channel        String?
@@ -53,14 +54,38 @@ model Transaction {
   @@index([user_id])
 }
 
+model Bundle {
+  id          String  @id
+  plan        String
+  title       String
+  amount      Int
+  type        String
+  network     String
+  provider    String  @default("alrahuz")
+  is_disabled Boolean @default(false)
+}
+
 model Session {
   id         String   @id @default("session")
   token      String?  @db.VarChar(300)
   updated_at DateTime @updatedAt
 }
 
+model Card {
+  id  Int     @id
+  pin String? @db.VarChar(300)
+}
+
+model Otp {
+  is_valid   Boolean  @default(true)
+  updated_at DateTime @updatedAt
+  user_email String   @unique
+  code       Int
+}
+
 enum Role {
   User
   Admin
-  Reseller
+  RESELLER
+  SMART_EARNER
 }

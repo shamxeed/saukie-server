@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Shamxeed\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add dotenv
+  C:\Program Files\nodejs\node.exe C:\Users\Shamxeed\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add axios bcryptjs jsonwebtoken nodemailer
 
 PATH: 
-  C:\Users\Shamxeed\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Shamxeed\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Java\jdk1.8.0_152\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Users\Shamxeed\AppData\Local\Microsoft\WindowsApps;C:\Users\Shamxeed\AppData\Roaming\npm;C:\Users\Shamxeed\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Java\jdk1.8.0_152\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\Shamxeed\AppData\Local\Microsoft\WindowsApps;C:\Users\Shamxeed\AppData\Roaming\npm;C:\Users\Shamxeed\AppData\Local\Programs\Microsoft VS Code\bin
 
 Yarn version: 
   1.22.19
@@ -41,6 +41,7 @@ npm manifest:
     "homepage": "https://github.com/shamxeed/saukie-server#readme",
     "dependencies": {
       "@prisma/client": "^4.16.0",
+      "dotenv": "^16.3.1",
       "express": "^4.18.2"
     },
     "devDependencies": {
@@ -221,6 +222,11 @@ Lockfile:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.2.0.tgz#4803735509ad8be552934c67df614f94e66fa015"
     integrity sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==
+  
+  dotenv@^16.3.1:
+    version "16.3.1"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
+    integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
   
   ee-first@1.1.1:
     version "1.1.1"
