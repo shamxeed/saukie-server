@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const { get_bundle } = require('../../utils/bundle');
 const { my_data } = require('../../utils/helpers');
 
 module.exports = async (req, res) => {
@@ -17,8 +16,6 @@ module.exports = async (req, res) => {
         password: true,
       },
     });
-
-    //  console.log(get_bundle(db));
 
     const getBundle = db.bundle.findMany({
       where: {

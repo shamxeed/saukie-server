@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/v1/funding', require('./src/routes/funding/index'));
 app.use('/v1/auth', require('./src/routes/auth/index'));
+app.use('/v1/transaction', require('./src/routes/transaction/index'));
 
 const PORT = process.env.PORT || 3001;
 
