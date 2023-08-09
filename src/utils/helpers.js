@@ -31,6 +31,7 @@ const my_data = {
   airtime_transactions_count: true,
   amount_spent: true,
   total_funding: true,
+  created_at: true,
   role: true,
 };
 
