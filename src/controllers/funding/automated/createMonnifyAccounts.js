@@ -13,7 +13,7 @@ const logMeIn = async () => {
 module.exports = async (req, res) => {
   const { body } = req;
 
-  const { email, token, first_name, last_name } = body;
+  const { email, first_name, last_name } = body;
 
   const name = `${first_name} ${last_name}`;
   try {
@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
 
     if (responseMessage === 'Cannot find reserved account') {
       const { data } = await axios({
-        token,
+        token: accessToken,
         provider: 'monnify',
         url: `/api/v2/bank-transfer/reserved-accounts`,
         rawBody: {
