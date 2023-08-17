@@ -27,6 +27,7 @@ const axios = async (props) => {
     headers: {
       ...res,
       ...headers,
+      'Content-Type': 'application/json',
     },
     data: body,
     ...rest,

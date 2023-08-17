@@ -32,8 +32,6 @@ module.exports = async (req, res) => {
       get_transactions,
     ]);
 
-    me.bundles = bundles;
-
     res.json({ me, bundles, transactions });
   } catch (err) {
     console.log(err.message);

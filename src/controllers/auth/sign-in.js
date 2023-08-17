@@ -42,12 +42,9 @@ module.exports = async (req, res) => {
     delete user.password;
 
     res.json({
-      user: {
-        ...user,
-        token,
-      },
+      user,
+      token,
       bundles,
-      //transactions,
     });
   } catch (err) {
     console.log(err.message);

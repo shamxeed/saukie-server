@@ -7,4 +7,6 @@ const router = express.Router();
 
 router.get('/:type/:cursor?', auth, controllers.get);
 
+router.post('/data', auth, controllers.data);
+
 module.exports = router;

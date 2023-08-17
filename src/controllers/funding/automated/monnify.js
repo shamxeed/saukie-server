@@ -1,4 +1,4 @@
-const { calc_user_balance } = require('../../../utils/helpers');
+const { helpers } = require('../../../utils/transaction/index');
 
 module.exports = async (req, res) => {
   const { db, body } = req;
@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
       return res.json({ msg: 'Transaction already recorded!' });
     }
 
-    const result = calc_user_balance(user, amountToFund, true);
+    const result = helpers.calc_user_balance(user, amountToFund, true);
 
     const { new_balance, new_total_funding } = result;
 
