@@ -65,7 +65,7 @@ const transaction = async (options) => {
     mobile_number,
   } = options;
 
-  const userData = await db.user.update({
+  const response = await db.user.update({
     where: { id: myId },
     data: {
       balance: new_balance,
@@ -99,8 +99,11 @@ const transaction = async (options) => {
     },
   });
 
+  const { transactions, ...userData } = response;
+
   return {
     userData,
+    transaction: transactions[0],
   };
 };
 

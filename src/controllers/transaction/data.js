@@ -54,9 +54,9 @@ module.exports = async (req, res) => {
       };
 
       try {
-        const { userData } = await data.transaction(options);
+        const { userData, transaction } = await data.transaction(options);
 
-        res.json({ userData, api_response });
+        res.json({ userData, transaction, api_response });
       } catch (err) {
         console.log(err.message);
 
