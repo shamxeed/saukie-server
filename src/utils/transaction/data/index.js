@@ -51,6 +51,7 @@ const buy = async (props) => {
 
 const transaction = async (options) => {
   const {
+    db,
     myId,
     new_balance,
     new_amount_spent,
@@ -87,7 +88,15 @@ const transaction = async (options) => {
         },
       },
     },
-    select: my_data,
+    select: {
+      ...my_data,
+      transactions: {
+        take: 1,
+        orderBy: {
+          created_at: 'desc',
+        },
+      },
+    },
   });
 
   return {
