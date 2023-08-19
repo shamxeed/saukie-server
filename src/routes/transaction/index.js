@@ -9,4 +9,6 @@ router.get('/:type/:cursor?', auth, controllers.get);
 
 router.post('/data', auth, controllers.data);
 
+router.post('/airtime', auth, controllers.airtime);
+
 module.exports = router;

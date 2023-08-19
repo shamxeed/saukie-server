@@ -16,6 +16,11 @@ const my_data = {
   role: true,
 };
 
+const is_object_empty = function (object) {
+  return Object.keys(object).length === 0;
+};
+
 module.exports = {
   my_data,
+  is_object_empty,
 };

@@ -2,9 +2,9 @@ const { data, helpers, retry } = require('../../utils/transaction/index');
 const { authorization } = require('../../utils/auth');
 
 module.exports = async (req, res) => {
-  const { body, db, myId } = req;
+  const { body, db } = req;
 
-  const { network, mobile_number, plan_id, isCoupon } = body;
+  const { plan_id, isCoupon } = body;
 
   const service = isCoupon ? 'Data Coupon' : 'Data Bundle';
 
@@ -39,15 +39,12 @@ module.exports = async (req, res) => {
       }
 
       const options = {
-        db,
         plan,
-        myId,
         amount,
-        network,
         status,
         service,
-        mobile_number,
         api_response,
+        ...req,
         ...authRes,
         ...serverRes,
         ...calcResults,

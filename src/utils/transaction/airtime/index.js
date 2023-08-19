@@ -6,42 +6,35 @@ let status = '';
 let api_response = '';
 
 const buy = async (props) => {
-  const { provider, body } = props;
+  const { body } = props;
 
-  const { mobile_number, plan_id, customer_id, network } = body;
+  const { mobile_number, amount, customer_id, network } = body;
 
   const network_id = get_network_id(network);
 
-  if (provider !== 'jonet') {
-    const { data } = await axios({
-      url: '/data/',
-      rawBody: {
-        mobile_number,
-        plan: plan_id,
-        Ported_number: true,
-        network: network_id,
-        customer_ref: customer_id,
-      },
-      provider,
-    });
+  const response = await axios({
+    provider: 'alrahuz',
+    //url: '/purchase_airtime.php',
+    url: '/topup/',
+    rawBody: {
+      amount,
+      customer_id,
+      mobile_number,
+      airtime_type: 'VTU',
+      Ported_number: true,
+      network: network_id,
+      //network,
+      phone: mobile_number,
+    },
+  });
 
-    status = data?.Status;
+  // status = response.data?.status;
 
-    api_response = data?.api_response;
-  } else {
-    const { data } = await axios({
-      url: '/purchase_data.php',
-      rawBody: {
-        customer_id,
-        code: plan_id,
-        phone: mobile_number,
-      },
-    });
+  // api_response = response.data?.server_response;
 
-    status = data?.status;
+  status = response.data?.Status;
 
-    api_response = data?.server_response;
-  }
+  api_response = response.data?.api_response;
 
   return {
     status,
@@ -51,39 +44,36 @@ const buy = async (props) => {
 
 const transaction = async (options) => {
   const {
+    body,
     db,
     myId,
-    body,
     new_balance,
     new_amount_spent,
-    plan,
-    amount,
     status,
     service,
     api_response,
     balance,
   } = options;
 
-  const { mobile_number, network } = body;
+  const { amount_to_pay, network, mobile_number } = body;
 
   const response = await db.user.update({
     where: { id: myId },
     data: {
       balance: new_balance,
       amount_spent: new_amount_spent,
-      data_transactions_count: {
+      airtime_transactions_count: {
         increment: 1,
       },
       transactions: {
         create: {
-          plan,
-          amount,
           status,
           service,
           new_balance,
           api_response,
           type: 'purchase',
           provider: network,
+          amount: amount_to_pay,
           balance_before: balance,
           mobile_number: mobile_number,
         },

@@ -1,7 +1,10 @@
+const { is_object_empty } = require('./helpers');
+
 const authorization = async (data) => {
   const { db, body, query, myId, is_data, select = {} } = data;
-
   const { amount, pin, amountToPay } = body;
+
+  const isQeuried = !is_object_empty(query);
 
   const response = {
     myId,
@@ -22,7 +25,7 @@ const authorization = async (data) => {
 
   const options = [getUser];
 
-  if (query) {
+  if (isQeuried) {
     options.push(query);
   }
 
@@ -55,7 +58,6 @@ const authorization = async (data) => {
     ...response,
     queryRes,
     user,
-    myId,
     error: false,
   };
 };
