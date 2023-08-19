@@ -39,7 +39,7 @@ const authorization = async (data) => {
   }
 
   if (is_data) {
-    if (!queryRes) {
+    if (queryRes.is_disabled) {
       return {
         ...response,
         msg: 'This bundle is temporarily disabled!',
