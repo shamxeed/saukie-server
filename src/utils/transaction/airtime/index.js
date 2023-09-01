@@ -13,28 +13,28 @@ const buy = async (props) => {
   const network_id = get_network_id(network);
 
   const response = await axios({
-    provider: 'alrahuz',
-    //url: '/purchase_airtime.php',
-    url: '/topup/',
+    // provider: 'alrahuz',
+    url: '/purchase_airtime.php',
+    //url: '/topup/',
     rawBody: {
       amount,
       customer_id,
-      mobile_number,
-      airtime_type: 'VTU',
-      Ported_number: true,
-      network: network_id,
-      //network,
+      //mobile_number,
+      // airtime_type: 'VTU',
+      // Ported_number: true,
+      // network: network_id,
+      network,
       phone: mobile_number,
     },
   });
 
-  // status = response.data?.status;
+  status = response.data?.status;
 
-  // api_response = response.data?.server_response;
+  api_response = response.data?.server_response;
 
-  status = response.data?.Status;
+  //status = response.data?.Status;
 
-  api_response = response.data?.api_response;
+  //api_response = response.data?.api_response;
 
   return {
     status,
