@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
       },
     });
 
-    const getBundle = db.bundle.findMany({
+    const getBundle = db.plan.findMany({
       where: {
         is_disabled: false,
       },
