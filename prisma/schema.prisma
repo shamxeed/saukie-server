@@ -54,15 +54,16 @@ model Transaction {
   @@index([user_id])
 }
 
-model Bundle {
-  id          String  @id
+model Plan {
+  id          Int     @id @default(autoincrement())
   plan        String
   title       String
+  plan_id     String
   amount      Int
   type        String
   network     String
-  provider    String  @default("alrahuz")
-  is_disabled Boolean @default(false)
+  provider    String
+  is_disabled Boolean @default(true)
 }
 
 model Session {

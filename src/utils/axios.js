@@ -39,12 +39,19 @@ const axios = async (props) => {
     return response;
   } catch (err) {
     console.log(err.message);
+
+    const isJonet = provider === 'jonet';
+
     if (isMonnify) {
       if (err.response?.data) {
         return err.response;
       } else {
         return { data: { requestSuccessful: false } };
       }
+    } else if (isJonet) {
+      throw new Error(
+        err.response?.data?.responseMessage || 'Oops! Something went wrong!!'
+      );
     } else if (err.response) {
       if (err.response?.data?.message) {
         throw new Error(err.response?.data?.message);

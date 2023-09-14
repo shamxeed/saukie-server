@@ -29,14 +29,15 @@ const buy = async (props) => {
 
     api_response = data?.api_response;
   } else {
-    const { data } = await axios({
-      url: '/purchase_data.php',
-      rawBody: {
-        customer_id,
-        code: plan_id,
-        phone: mobile_number,
-      },
-    });
+    const { data } =
+      (await axios({
+        url: '/purchase_data.php',
+        rawBody: {
+          customer_id,
+          code: plan_id,
+          phone: mobile_number,
+        },
+      })) || {};
 
     status = data?.status;
 
